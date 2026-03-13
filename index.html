@@ -28,18 +28,9 @@
     }
 
     *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
-
     html { scroll-behavior: smooth; scroll-padding-top: 70px; }
+    body { font-family: var(--font-body); background: var(--bg); color: var(--text); overflow-x: hidden; line-height: 1.65; }
 
-    body {
-      font-family: var(--font-body);
-      background: var(--bg);
-      color: var(--text);
-      overflow-x: hidden;
-      line-height: 1.65;
-    }
-
-    /* ─── NOISE TEXTURE OVERLAY ─── */
     body::before {
       content: '';
       position: fixed;
@@ -50,698 +41,122 @@
       opacity: 0.4;
     }
 
-    /* ─── TOPBAR ─── */
     .topbar {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 100;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 2.5rem;
-      height: 64px;
-      background: rgba(13,14,20,0.85);
-      backdrop-filter: blur(14px);
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 2.5rem; height: 64px;
+      background: rgba(13,14,20,0.85); backdrop-filter: blur(14px);
       border-bottom: 1px solid var(--border);
     }
-
-    .topbar-logo {
-      font-family: var(--font-display);
-      font-size: 1.3rem;
-      font-weight: 800;
-      color: var(--accent);
-      letter-spacing: -0.5px;
-    }
-
+    .topbar-logo { font-family: var(--font-display); font-size: 1.3rem; font-weight: 800; color: var(--accent); letter-spacing: -0.5px; }
     .topbar-logo span { color: var(--text); }
-
     .topbar-nav { display: flex; gap: 2rem; }
-
-    .topbar-nav a {
-      font-family: var(--font-mono);
-      font-size: 0.8rem;
-      color: var(--muted);
-      text-decoration: none;
-      transition: color 0.2s;
-      letter-spacing: 0.03em;
-    }
-
+    .topbar-nav a { font-family: var(--font-mono); font-size: 0.8rem; color: var(--muted); text-decoration: none; transition: color 0.2s; letter-spacing: 0.03em; }
     .topbar-nav a:hover { color: var(--accent); }
-
     .topbar-nav a::before { content: '// '; opacity: 0.4; }
 
-    /* ─── HERO ─── */
-    .hero {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      padding: 100px 2.5rem 60px;
-      position: relative;
-      overflow: hidden;
-    }
-
+    .hero { min-height: 100vh; display: flex; align-items: center; padding: 100px 2.5rem 60px; position: relative; overflow: hidden; }
     .hero-grid-bg {
-      position: absolute;
-      inset: 0;
-      background-image:
-        linear-gradient(rgba(240,165,0,0.04) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(240,165,0,0.04) 1px, transparent 1px);
+      position: absolute; inset: 0;
+      background-image: linear-gradient(rgba(240,165,0,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(240,165,0,0.04) 1px, transparent 1px);
       background-size: 60px 60px;
       mask-image: radial-gradient(ellipse at 60% 40%, black 30%, transparent 75%);
     }
+    .hero-glow { position: absolute; width: 700px; height: 700px; border-radius: 50%; background: radial-gradient(circle, rgba(240,165,0,0.08) 0%, transparent 70%); top: -200px; right: -100px; pointer-events: none; }
+    .hero-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr auto; gap: 4rem; align-items: center; width: 100%; position: relative; z-index: 1; }
+    .hero-tag { font-family: var(--font-mono); font-size: 0.8rem; color: var(--accent); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 1.2rem; display: flex; align-items: center; gap: 0.6rem; }
+    .hero-tag::before { content: ''; display: inline-block; width: 24px; height: 2px; background: var(--accent); }
+    .hero h1 { font-family: var(--font-display); font-size: clamp(3.5rem, 7vw, 6.5rem); font-weight: 800; line-height: 1; letter-spacing: -2px; margin-bottom: 1.5rem; }
+    .hero h1 .name-line { display: block; color: var(--text); }
+    .hero h1 .accent-line { display: block; color: var(--accent); }
+    .hero-desc { font-size: 1.1rem; color: var(--muted); max-width: 500px; line-height: 1.8; margin-bottom: 2.5rem; }
+    .hero-ctas { display: flex; gap: 1rem; flex-wrap: wrap; }
 
-    .hero-glow {
-      position: absolute;
-      width: 700px;
-      height: 700px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(240,165,0,0.08) 0%, transparent 70%);
-      top: -200px;
-      right: -100px;
-      pointer-events: none;
-    }
+    .btn-primary { display: inline-flex; align-items: center; gap: 0.6rem; padding: 0.85rem 2rem; background: var(--accent); color: #0d0e14; font-family: var(--font-display); font-weight: 700; font-size: 0.95rem; border-radius: 6px; text-decoration: none; transition: all 0.25s; }
+    .btn-primary:hover { background: #ffb820; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(240,165,0,0.3); }
+    .btn-secondary { display: inline-flex; align-items: center; gap: 0.6rem; padding: 0.85rem 2rem; border: 1px solid var(--border); color: var(--text); font-family: var(--font-display); font-weight: 600; font-size: 0.95rem; border-radius: 6px; text-decoration: none; transition: all 0.25s; background: var(--surface); }
+    .btn-secondary:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
 
-    .hero-inner {
-      max-width: 1200px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 4rem;
-      align-items: center;
-      width: 100%;
-      position: relative;
-      z-index: 1;
-    }
+    .hero-photo-wrap { position: relative; flex-shrink: 0; }
+    .hero-photo-frame { width: 280px; height: 280px; border-radius: 20px; position: relative; overflow: hidden; border: 2px solid rgba(240,165,0,0.3); box-shadow: 0 0 0 8px rgba(240,165,0,0.05), 0 30px 60px rgba(0,0,0,0.5); }
+    .hero-photo-frame::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to bottom, transparent 60%, rgba(13,14,20,0.6)); }
+    .hero-photo-frame img { width: 100%; height: 100%; object-fit: cover; object-position: top; }
+    .photo-decoration { position: absolute; width: 100px; height: 100px; border: 2px solid rgba(240,165,0,0.2); border-radius: 12px; bottom: -20px; right: -20px; z-index: -1; }
+    .photo-decoration2 { position: absolute; width: 50px; height: 50px; background: var(--accent); border-radius: 8px; top: -12px; left: -12px; opacity: 0.15; z-index: -1; }
+    .status-badge { position: absolute; bottom: -16px; left: 50%; transform: translateX(-50%); background: var(--surface2); border: 1px solid var(--border); border-radius: 20px; padding: 0.4rem 1rem; font-family: var(--font-mono); font-size: 0.72rem; color: var(--accent3); white-space: nowrap; display: flex; align-items: center; gap: 0.5rem; z-index: 2; }
+    .status-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--accent3); animation: pulse 2s infinite; }
+    @keyframes pulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.5; transform: scale(1.3); } }
 
-    .hero-tag {
-      font-family: var(--font-mono);
-      font-size: 0.8rem;
-      color: var(--accent);
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      margin-bottom: 1.2rem;
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-    }
+    .section { max-width: 1200px; margin: 0 auto; padding: 100px 2.5rem; position: relative; z-index: 1; }
+    .section-label { font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.8rem; display: flex; align-items: center; gap: 0.6rem; }
+    .section-label::before { content: ''; display: inline-block; width: 20px; height: 2px; background: var(--accent); }
+    .section-title { font-family: var(--font-display); font-size: clamp(2rem, 4vw, 3rem); font-weight: 800; letter-spacing: -1px; margin-bottom: 3rem; color: var(--text); }
+    .divider { border: none; border-top: 1px solid var(--border); max-width: 1200px; margin: 0 auto; }
 
-    .hero-tag::before {
-      content: '';
-      display: inline-block;
-      width: 24px;
-      height: 2px;
-      background: var(--accent);
-    }
-
-    .hero h1 {
-      font-family: var(--font-display);
-      font-size: clamp(3.5rem, 7vw, 6.5rem);
-      font-weight: 800;
-      line-height: 1;
-      letter-spacing: -2px;
-      margin-bottom: 1.5rem;
-    }
-
-    .hero h1 .name-line {
-      display: block;
-      color: var(--text);
-    }
-
-    .hero h1 .accent-line {
-      display: block;
-      color: var(--accent);
-      position: relative;
-    }
-
-    .hero-desc {
-      font-size: 1.1rem;
-      color: var(--muted);
-      max-width: 500px;
-      line-height: 1.8;
-      margin-bottom: 2.5rem;
-    }
-
-    .hero-ctas {
-      display: flex;
-      gap: 1rem;
-      flex-wrap: wrap;
-    }
-
-    .btn-primary {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.6rem;
-      padding: 0.85rem 2rem;
-      background: var(--accent);
-      color: #0d0e14;
-      font-family: var(--font-display);
-      font-weight: 700;
-      font-size: 0.95rem;
-      border-radius: 6px;
-      text-decoration: none;
-      transition: all 0.25s;
-      letter-spacing: 0.01em;
-    }
-
-    .btn-primary:hover {
-      background: #ffb820;
-      transform: translateY(-2px);
-      box-shadow: 0 8px 24px rgba(240,165,0,0.3);
-    }
-
-    .btn-secondary {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.6rem;
-      padding: 0.85rem 2rem;
-      border: 1px solid var(--border);
-      color: var(--text);
-      font-family: var(--font-display);
-      font-weight: 600;
-      font-size: 0.95rem;
-      border-radius: 6px;
-      text-decoration: none;
-      transition: all 0.25s;
-      background: var(--surface);
-    }
-
-    .btn-secondary:hover {
-      border-color: var(--accent);
-      color: var(--accent);
-      transform: translateY(-2px);
-    }
-
-    /* ─── PROFILE PHOTO ─── */
-    .hero-photo-wrap {
-      position: relative;
-      flex-shrink: 0;
-    }
-
-    .hero-photo-frame {
-      width: 280px;
-      height: 280px;
-      border-radius: 20px;
-      position: relative;
-      overflow: hidden;
-      border: 2px solid rgba(240,165,0,0.3);
-      box-shadow: 0 0 0 8px rgba(240,165,0,0.05), 0 30px 60px rgba(0,0,0,0.5);
-    }
-
-    .hero-photo-frame::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(to bottom, transparent 60%, rgba(13,14,20,0.6));
-    }
-
-    .hero-photo-frame img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: top;
-    }
-
-    .photo-decoration {
-      position: absolute;
-      width: 100px;
-      height: 100px;
-      border: 2px solid rgba(240,165,0,0.2);
-      border-radius: 12px;
-      bottom: -20px;
-      right: -20px;
-      z-index: -1;
-    }
-
-    .photo-decoration2 {
-      position: absolute;
-      width: 50px;
-      height: 50px;
-      background: var(--accent);
-      border-radius: 8px;
-      top: -12px;
-      left: -12px;
-      opacity: 0.15;
-      z-index: -1;
-    }
-
-    .status-badge {
-      position: absolute;
-      bottom: -16px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: var(--surface2);
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      padding: 0.4rem 1rem;
-      font-family: var(--font-mono);
-      font-size: 0.72rem;
-      color: var(--accent3);
-      white-space: nowrap;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      z-index: 2;
-    }
-
-    .status-dot {
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      background: var(--accent3);
-      animation: pulse 2s infinite;
-    }
-
-    @keyframes pulse {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.5; transform: scale(1.3); }
-    }
-
-    /* ─── SECTION COMMON ─── */
-    .section {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 100px 2.5rem;
-      position: relative;
-      z-index: 1;
-    }
-
-    .section-label {
-      font-family: var(--font-mono);
-      font-size: 0.75rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 0.8rem;
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-    }
-
-    .section-label::before {
-      content: '';
-      display: inline-block;
-      width: 20px;
-      height: 2px;
-      background: var(--accent);
-    }
-
-    .section-title {
-      font-family: var(--font-display);
-      font-size: clamp(2rem, 4vw, 3rem);
-      font-weight: 800;
-      letter-spacing: -1px;
-      margin-bottom: 3rem;
-      color: var(--text);
-    }
-
-    /* ─── DIVIDER ─── */
-    .divider {
-      border: none;
-      border-top: 1px solid var(--border);
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    /* ─── ABOUT ─── */
-    .about-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 3rem;
-      align-items: start;
-    }
-
-    .about-text p {
-      color: var(--muted);
-      font-size: 1.05rem;
-      line-height: 1.85;
-      margin-bottom: 1.2rem;
-    }
-
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start; }
+    .about-text p { color: var(--muted); font-size: 1.05rem; line-height: 1.85; margin-bottom: 1.2rem; }
     .about-text p strong { color: var(--text); font-weight: 600; }
-
-    .about-stats {
-      display: flex;
-      flex-direction: column;
-      gap: 1.5rem;
-    }
-
-    .stat-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 1.5rem;
-      transition: border-color 0.25s;
-    }
-
+    .about-stats { display: flex; flex-direction: column; gap: 1.5rem; }
+    .stat-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; transition: border-color 0.25s; }
     .stat-card:hover { border-color: rgba(240,165,0,0.3); }
+    .stat-number { font-family: var(--font-display); font-size: 2.5rem; font-weight: 800; color: var(--accent); letter-spacing: -1px; line-height: 1; margin-bottom: 0.3rem; }
+    .stat-label { font-size: 0.9rem; color: var(--muted); }
 
-    .stat-number {
-      font-family: var(--font-display);
-      font-size: 2.5rem;
-      font-weight: 800;
-      color: var(--accent);
-      letter-spacing: -1px;
-      line-height: 1;
-      margin-bottom: 0.3rem;
-    }
-
-    .stat-label {
-      font-size: 0.9rem;
-      color: var(--muted);
-    }
-
-    /* ─── SKILLS ─── */
     .skills-section { background: var(--bg2); }
+    .skills-wrapper { max-width: 1200px; margin: 0 auto; padding: 100px 2.5rem; position: relative; z-index: 1; }
+    .skills-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1.2rem; }
+    .skill-pill { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 1.2rem 1.5rem; display: flex; align-items: center; gap: 1rem; transition: all 0.25s; cursor: default; }
+    .skill-pill:hover { border-color: var(--accent); background: var(--surface2); transform: translateY(-3px); box-shadow: 0 8px 20px rgba(0,0,0,0.3); }
+    .skill-icon { font-size: 1.6rem; width: 40px; text-align: center; flex-shrink: 0; color: var(--accent); }
+    .skill-name { font-family: var(--font-display); font-weight: 700; font-size: 0.95rem; margin-bottom: 0.1rem; }
+    .skill-sub { font-size: 0.76rem; color: var(--muted); font-family: var(--font-mono); }
 
-    .skills-wrapper {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 100px 2.5rem;
-      position: relative;
-      z-index: 1;
-    }
-
-    .skills-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-      gap: 1.2rem;
-    }
-
-    .skill-pill {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 1.2rem 1.5rem;
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      transition: all 0.25s;
-      cursor: default;
-    }
-
-    .skill-pill:hover {
-      border-color: var(--accent);
-      background: var(--surface2);
-      transform: translateY(-3px);
-      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
-    }
-
-    .skill-icon {
-      font-size: 1.6rem;
-      width: 40px;
-      text-align: center;
-      flex-shrink: 0;
-      color: var(--accent);
-    }
-
-    .skill-info {}
-
-    .skill-name {
-      font-family: var(--font-display);
-      font-weight: 700;
-      font-size: 0.95rem;
-      margin-bottom: 0.1rem;
-    }
-
-    .skill-sub {
-      font-size: 0.76rem;
-      color: var(--muted);
-      font-family: var(--font-mono);
-    }
-
-    /* ─── PROJECTS ─── */
-    .projects-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
-      gap: 1.5rem;
-    }
-
-    .project-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 1.8rem;
-      text-decoration: none;
-      color: inherit;
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-      transition: all 0.25s;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .project-card::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 3px;
-      background: var(--accent);
-      transform: scaleX(0);
-      transform-origin: left;
-      transition: transform 0.3s;
-    }
-
-    .project-card:hover {
-      border-color: rgba(240,165,0,0.25);
-      transform: translateY(-5px);
-      box-shadow: 0 20px 40px rgba(0,0,0,0.4);
-    }
-
+    .projects-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 1.5rem; }
+    .project-card { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 1.8rem; text-decoration: none; color: inherit; display: flex; flex-direction: column; gap: 1rem; transition: all 0.25s; position: relative; overflow: hidden; }
+    .project-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--accent); transform: scaleX(0); transform-origin: left; transition: transform 0.3s; }
+    .project-card:hover { border-color: rgba(240,165,0,0.25); transform: translateY(-5px); box-shadow: 0 20px 40px rgba(0,0,0,0.4); }
     .project-card:hover::before { transform: scaleX(1); }
+    .project-card-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; }
+    .project-icon { width: 44px; height: 44px; background: rgba(240,165,0,0.1); border: 1px solid rgba(240,165,0,0.2); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; color: var(--accent); flex-shrink: 0; }
+    .project-lang { font-family: var(--font-mono); font-size: 0.7rem; color: var(--muted); background: var(--surface2); padding: 0.25rem 0.6rem; border-radius: 4px; align-self: flex-start; }
+    .project-name { font-family: var(--font-display); font-size: 1.1rem; font-weight: 700; color: var(--text); }
+    .project-desc { font-size: 0.9rem; color: var(--muted); line-height: 1.7; flex: 1; }
+    .project-footer { display: flex; align-items: center; justify-content: space-between; padding-top: 1rem; border-top: 1px solid var(--border); }
+    .project-link-label { font-family: var(--font-mono); font-size: 0.75rem; color: var(--accent); display: flex; align-items: center; gap: 0.4rem; }
+    .project-stars { font-size: 0.78rem; color: var(--muted); display: flex; align-items: center; gap: 0.3rem; }
 
-    .project-card-top {
-      display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
-      gap: 1rem;
-    }
+    .contact-section { background: var(--bg2); }
+    .contact-wrapper { max-width: 1200px; margin: 0 auto; padding: 100px 2.5rem; position: relative; z-index: 1; }
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+    .contact-left p { color: var(--muted); font-size: 1.05rem; line-height: 1.8; margin-bottom: 2rem; }
+    .contact-links { display: flex; flex-direction: column; gap: 1rem; }
+    .contact-link { display: flex; align-items: center; gap: 1rem; padding: 1rem 1.2rem; background: var(--surface); border: 1px solid var(--border); border-radius: 10px; text-decoration: none; color: var(--text); transition: all 0.25s; }
+    .contact-link:hover { border-color: var(--accent); color: var(--accent); transform: translateX(5px); }
+    .contact-link i { font-size: 1.2rem; width: 24px; text-align: center; color: var(--accent); }
+    .contact-link-info { display: flex; flex-direction: column; justify-content: center; gap: 0.1rem; overflow: hidden; }
+    .contact-link-label { font-size: 0.75rem; font-family: var(--font-mono); color: var(--muted); margin-bottom: 0.1rem; text-transform: uppercase; letter-spacing: 0.06em; }
+    .contact-link-value { font-weight: 600; font-size: 0.95rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .contact-right { display: flex; flex-direction: column; justify-content: flex-start; gap: 1.5rem; }
 
-    .project-icon {
-      width: 44px;
-      height: 44px;
-      background: rgba(240,165,0,0.1);
-      border: 1px solid rgba(240,165,0,0.2);
-      border-radius: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.2rem;
-      color: var(--accent);
-      flex-shrink: 0;
-    }
-
-    .project-lang {
-      font-family: var(--font-mono);
-      font-size: 0.7rem;
-      color: var(--muted);
-      background: var(--surface2);
-      padding: 0.25rem 0.6rem;
-      border-radius: 4px;
-      align-self: flex-start;
-    }
-
-    .project-name {
-      font-family: var(--font-display);
-      font-size: 1.1rem;
-      font-weight: 700;
-      color: var(--text);
-    }
-
-    .project-desc {
-      font-size: 0.9rem;
-      color: var(--muted);
-      line-height: 1.7;
-      flex: 1;
-    }
-
-    .project-footer {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding-top: 1rem;
-      border-top: 1px solid var(--border);
-    }
-
-    .project-link-label {
-      font-family: var(--font-mono);
-      font-size: 0.75rem;
-      color: var(--accent);
-      display: flex;
-      align-items: center;
-      gap: 0.4rem;
-    }
-
-    .project-stars {
-      font-size: 0.78rem;
-      color: var(--muted);
-      display: flex;
-      align-items: center;
-      gap: 0.3rem;
-    }
-
-    /* ─── CONTACT ─── */
-    .contact-section {
-      background: var(--bg2);
-    }
-
-    .contact-wrapper {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 100px 2.5rem;
-      position: relative;
-      z-index: 1;
-    }
-
-    .contact-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 4rem;
-      align-items: start;
-    }
-
-    .contact-left p {
-      color: var(--muted);
-      font-size: 1.05rem;
-      line-height: 1.8;
-      margin-bottom: 2rem;
-    }
-
-    .contact-links {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-    }
-
-    .contact-link {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      padding: 1rem 1.2rem;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      text-decoration: none;
-      color: var(--text);
-      transition: all 0.25s;
-    }
-
-    .contact-link:hover {
-      border-color: var(--accent);
-      color: var(--accent);
-      transform: translateX(5px);
-    }
-
-    .contact-link i {
-      font-size: 1.2rem;
-      width: 24px;
-      text-align: center;
-      color: var(--accent);
-    }
-
-    .contact-link-info {}
-
-    .contact-link-label {
-      font-size: 0.75rem;
-      font-family: var(--font-mono);
-      color: var(--muted);
-      margin-bottom: 0.1rem;
-    }
-
-    .contact-link-value {
-      font-weight: 600;
-      font-size: 0.95rem;
-    }
-
-    .contact-right {}
-
-    .fun-facts {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 2rem;
-    }
-
-    .fun-facts h3 {
-      font-family: var(--font-display);
-      font-size: 1rem;
-      margin-bottom: 1.5rem;
-      color: var(--text);
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-    }
-
+    .fun-facts { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 2rem; }
+    .fun-facts h3 { font-family: var(--font-display); font-size: 1rem; margin-bottom: 1.5rem; color: var(--text); display: flex; align-items: center; gap: 0.6rem; }
     .fun-facts h3 i { color: var(--accent); }
-
-    .fact-item {
-      display: flex;
-      align-items: flex-start;
-      gap: 0.8rem;
-      padding: 0.8rem 0;
-      border-bottom: 1px solid var(--border);
-      font-size: 0.92rem;
-      color: var(--muted);
-    }
-
+    .fact-item { display: flex; align-items: flex-start; gap: 0.8rem; padding: 0.8rem 0; border-bottom: 1px solid var(--border); font-size: 0.92rem; color: var(--muted); }
     .fact-item:last-child { border-bottom: none; }
-
     .fact-emoji { font-size: 1.1rem; flex-shrink: 0; }
 
-    /* ─── FOOTER ─── */
-    footer {
-      border-top: 1px solid var(--border);
-      padding: 2.5rem;
-      text-align: center;
-      background: var(--bg);
-      position: relative;
-      z-index: 1;
-    }
-
-    footer p {
-      font-family: var(--font-mono);
-      font-size: 0.8rem;
-      color: var(--muted);
-      line-height: 2;
-    }
-
+    footer { border-top: 1px solid var(--border); padding: 2.5rem; text-align: center; background: var(--bg); position: relative; z-index: 1; }
+    footer p { font-family: var(--font-mono); font-size: 0.8rem; color: var(--muted); line-height: 2; }
     footer a { color: var(--accent); text-decoration: none; }
 
-    /* ─── BACK TO TOP ─── */
-    .btt {
-      position: fixed;
-      bottom: 2rem;
-      right: 2rem;
-      width: 44px;
-      height: 44px;
-      background: var(--surface2);
-      border: 1px solid var(--border);
-      color: var(--accent);
-      border-radius: 8px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      opacity: 0;
-      transform: translateY(10px);
-      transition: all 0.3s;
-      z-index: 99;
-      font-size: 1rem;
-    }
-
+    .btt { position: fixed; bottom: 2rem; right: 2rem; width: 44px; height: 44px; background: var(--surface2); border: 1px solid var(--border); color: var(--accent); border-radius: 8px; display: flex; align-items: center; justify-content: center; cursor: pointer; opacity: 0; transform: translateY(10px); transition: all 0.3s; z-index: 99; font-size: 1rem; }
     .btt.visible { opacity: 1; transform: translateY(0); }
     .btt:hover { background: var(--accent); color: #0d0e14; }
 
-    /* ─── ANIMATIONS ─── */
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(25px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(25px); } to { opacity: 1; transform: translateY(0); } }
     .hero-inner { animation: fadeUp 0.8s ease-out both; }
     .hero-photo-wrap { animation: fadeUp 0.8s 0.15s ease-out both; }
 
-    /* ─── RESPONSIVE ─── */
     @media (max-width: 900px) {
       .hero-inner { grid-template-columns: 1fr; }
       .hero-photo-wrap { display: flex; justify-content: center; order: -1; }
@@ -749,7 +164,6 @@
       .about-grid, .contact-grid { grid-template-columns: 1fr; }
       .topbar-nav { gap: 1rem; }
     }
-
     @media (max-width: 600px) {
       .topbar { padding: 0 1.2rem; }
       .section, .skills-wrapper, .contact-wrapper { padding: 70px 1.2rem; }
@@ -762,7 +176,6 @@
 </head>
 <body>
 
-<!-- ─── TOPBAR ─── -->
 <header class="topbar">
   <div class="topbar-logo">Aditya<span>.</span></div>
   <nav class="topbar-nav">
@@ -773,7 +186,6 @@
   </nav>
 </header>
 
-<!-- ─── HERO ─── -->
 <section class="hero">
   <div class="hero-grid-bg"></div>
   <div class="hero-glow"></div>
@@ -785,7 +197,7 @@
         <span class="accent-line">Aditya Ranjan Jha.</span>
       </h1>
       <p class="hero-desc">
-        Self-taught <strong style="color:var(--text)">Systems & Infrastructure Engineer</strong> — building backend services, 
+        Self-taught <strong style="color:var(--text)">Systems & Infrastructure Engineer</strong> — building backend services,
         Linux tooling, and high-performance systems in Python & Rust.
       </p>
       <div class="hero-ctas">
@@ -813,25 +225,14 @@
 
 <hr class="divider" />
 
-<!-- ─── ABOUT ─── -->
 <div class="section" id="about">
   <div class="section-label">Who I am</div>
   <h2 class="section-title">About Me</h2>
   <div class="about-grid">
     <div class="about-text">
-      <p>
-        Hey! I'm <strong>Aditya Ranjan Jha</strong>, a self-taught systems developer from India focused on 
-        <strong>backend infrastructure, Linux systems, and performance-oriented engineering</strong>.
-      </p>
-      <p>
-        I build modular backend services, real-time communication systems, and experimental systems projects — 
-        including RF-based human presence detection and Rust performance exploration. I'm a daily <strong>Arch Linux</strong> user 
-        who enjoys configuring development environments, audio systems (PipeWire + OBS), and digging into how things work under the hood.
-      </p>
-      <p>
-        My interests lie in <strong>distributed systems, infrastructure tooling, and high-performance backend engineering</strong>.
-        I'm always shipping something new and deepening my understanding of networking and distributed architectures.
-      </p>
+      <p>Hey! I'm <strong>Aditya Ranjan Jha</strong>, a self-taught systems developer from India focused on <strong>backend infrastructure, Linux systems, and performance-oriented engineering</strong>.</p>
+      <p>I build modular backend services, real-time communication systems, and experimental systems projects — including RF-based human presence detection and Rust performance exploration. I'm a daily <strong>Arch Linux</strong> user who enjoys configuring development environments and digging into how things work under the hood.</p>
+      <p>My interests lie in <strong>distributed systems, infrastructure tooling, and high-performance backend engineering</strong>. I'm always shipping something new and deepening my understanding of networking and distributed architectures.</p>
     </div>
     <div class="about-stats">
       <div class="stat-card">
@@ -848,186 +249,87 @@
 
 <hr class="divider" />
 
-<!-- ─── SKILLS ─── -->
 <div class="skills-section" id="skills">
   <div class="skills-wrapper">
     <div class="section-label">What I work with</div>
     <h2 class="section-title">Skills & Tools</h2>
     <div class="skills-grid">
-      <div class="skill-pill">
-        <div class="skill-icon"><i class="fab fa-python"></i></div>
-        <div class="skill-info">
-          <div class="skill-name">Python</div>
-          <div class="skill-sub">Primary language</div>
-        </div>
-      </div>
-      <div class="skill-pill">
-        <div class="skill-icon"><i class="fas fa-gear"></i></div>
-        <div class="skill-info">
-          <div class="skill-name">Rust</div>
-          <div class="skill-sub">Performance & systems</div>
-        </div>
-      </div>
-      <div class="skill-pill">
-        <div class="skill-icon"><i class="fas fa-bolt"></i></div>
-        <div class="skill-info">
-          <div class="skill-name">FastAPI</div>
-          <div class="skill-sub">Async REST backends</div>
-        </div>
-      </div>
-      <div class="skill-pill">
-        <div class="skill-icon"><i class="fas fa-plug"></i></div>
-        <div class="skill-info">
-          <div class="skill-name">WebSockets</div>
-          <div class="skill-sub">Real-time communication</div>
-        </div>
-      </div>
-      <div class="skill-pill">
-        <div class="skill-icon"><i class="fas fa-server"></i></div>
-        <div class="skill-info">
-          <div class="skill-name">REST APIs</div>
-          <div class="skill-sub">API architecture</div>
-        </div>
-      </div>
-      <div class="skill-pill">
-        <div class="skill-icon"><i class="fab fa-linux"></i></div>
-        <div class="skill-info">
-          <div class="skill-name">Linux / Arch</div>
-          <div class="skill-sub">Daily driver · sysadmin</div>
-        </div>
-      </div>
-      <div class="skill-pill">
-        <div class="skill-icon"><i class="fas fa-terminal"></i></div>
-        <div class="skill-info">
-          <div class="skill-name">Shell Scripting</div>
-          <div class="skill-sub">CLI automation</div>
-        </div>
-      </div>
-      <div class="skill-pill">
-        <div class="skill-icon"><i class="fas fa-network-wired"></i></div>
-        <div class="skill-info">
-          <div class="skill-name">Networking</div>
-          <div class="skill-sub">Protocols · sockets</div>
-        </div>
-      </div>
-      <div class="skill-pill">
-        <div class="skill-icon"><i class="fas fa-microchip"></i></div>
-        <div class="skill-info">
-          <div class="skill-name">Async / Concurrency</div>
-          <div class="skill-sub">Performance optimization</div>
-        </div>
-      </div>
-      <div class="skill-pill">
-        <div class="skill-icon"><i class="fab fa-git-alt"></i></div>
-        <div class="skill-info">
-          <div class="skill-name">Git & GitHub</div>
-          <div class="skill-sub">Version control</div>
-        </div>
-      </div>
-      <div class="skill-pill">
-        <div class="skill-icon"><i class="fas fa-brain"></i></div>
-        <div class="skill-info">
-          <div class="skill-name">ML Fundamentals</div>
-          <div class="skill-sub">Tokenization · attention</div>
-        </div>
-      </div>
+      <div class="skill-pill"><div class="skill-icon"><i class="fab fa-python"></i></div><div class="skill-info"><div class="skill-name">Python</div><div class="skill-sub">Primary language</div></div></div>
+      <div class="skill-pill"><div class="skill-icon"><i class="fas fa-gear"></i></div><div class="skill-info"><div class="skill-name">Rust</div><div class="skill-sub">Performance & systems</div></div></div>
+      <div class="skill-pill"><div class="skill-icon"><i class="fas fa-bolt"></i></div><div class="skill-info"><div class="skill-name">FastAPI</div><div class="skill-sub">Async REST backends</div></div></div>
+      <div class="skill-pill"><div class="skill-icon"><i class="fas fa-plug"></i></div><div class="skill-info"><div class="skill-name">WebSockets</div><div class="skill-sub">Real-time communication</div></div></div>
+      <div class="skill-pill"><div class="skill-icon"><i class="fas fa-server"></i></div><div class="skill-info"><div class="skill-name">REST APIs</div><div class="skill-sub">API architecture</div></div></div>
+      <div class="skill-pill"><div class="skill-icon"><i class="fab fa-linux"></i></div><div class="skill-info"><div class="skill-name">Linux / Arch</div><div class="skill-sub">Daily driver · sysadmin</div></div></div>
+      <div class="skill-pill"><div class="skill-icon"><i class="fas fa-terminal"></i></div><div class="skill-info"><div class="skill-name">Shell Scripting</div><div class="skill-sub">CLI automation</div></div></div>
+      <div class="skill-pill"><div class="skill-icon"><i class="fas fa-network-wired"></i></div><div class="skill-info"><div class="skill-name">Networking</div><div class="skill-sub">Protocols · sockets</div></div></div>
+      <div class="skill-pill"><div class="skill-icon"><i class="fas fa-microchip"></i></div><div class="skill-info"><div class="skill-name">Async / Concurrency</div><div class="skill-sub">Performance optimization</div></div></div>
+      <div class="skill-pill"><div class="skill-icon"><i class="fab fa-git-alt"></i></div><div class="skill-info"><div class="skill-name">Git & GitHub</div><div class="skill-sub">Version control</div></div></div>
+      <div class="skill-pill"><div class="skill-icon"><i class="fas fa-brain"></i></div><div class="skill-info"><div class="skill-name">ML Fundamentals</div><div class="skill-sub">Tokenization · attention</div></div></div>
     </div>
   </div>
 </div>
 
 <hr class="divider" />
 
-<!-- ─── PROJECTS ─── -->
 <div class="section" id="projects">
   <div class="section-label">Things I've built</div>
   <h2 class="section-title">Projects</h2>
   <div class="projects-grid">
 
     <a class="project-card" href="https://github.com/middi870/wifi_rf" target="_blank" rel="noopener">
-      <div class="project-card-top">
-        <div class="project-icon"><i class="fas fa-wifi"></i></div>
-        <span class="project-lang">Rust</span>
-      </div>
+      <div class="project-card-top"><div class="project-icon"><i class="fas fa-wifi"></i></div><span class="project-lang">Rust</span></div>
       <div class="project-name">WiFi RF Human Presence Detection</div>
       <div class="project-desc">Experimental RF sensing system that detects human presence via WiFi signal fluctuations — includes a signal processing pipeline and real-time visualization dashboard.</div>
-      <div class="project-footer">
-        <span class="project-link-label"><i class="fab fa-github"></i> middi870/wifi_rf</span>
-        <span class="project-stars"><i class="fas fa-star"></i> 1</span>
-      </div>
+      <div class="project-footer"><span class="project-link-label"><i class="fab fa-github"></i> middi870/wifi_rf</span><span class="project-stars"><i class="fas fa-star"></i> 1</span></div>
     </a>
 
     <a class="project-card" href="https://github.com/middi870/web_piper_tts" target="_blank" rel="noopener">
-      <div class="project-card-top">
-        <div class="project-icon"><i class="fas fa-volume-high"></i></div>
-        <span class="project-lang">HTML</span>
-      </div>
+      <div class="project-card-top"><div class="project-icon"><i class="fas fa-volume-high"></i></div><span class="project-lang">HTML</span></div>
       <div class="project-name">web_piper_tts</div>
       <div class="project-desc">Browser-based text-to-speech using the Piper TTS engine — convert written text to natural-sounding audio right in the browser, no backend needed.</div>
-      <div class="project-footer">
-        <span class="project-link-label"><i class="fab fa-github"></i> middi870/web_piper_tts</span>
-        <span class="project-stars"><i class="fas fa-star"></i> 1</span>
-      </div>
+      <div class="project-footer"><span class="project-link-label"><i class="fab fa-github"></i> middi870/web_piper_tts</span><span class="project-stars"><i class="fas fa-star"></i> 1</span></div>
+    </a>
+
+    <a class="project-card" href="https://github.com/middi870/doc" target="_blank" rel="noopener">
+      <div class="project-card-top"><div class="project-icon"><i class="fas fa-book-open"></i></div><span class="project-lang">Markdown</span></div>
+      <div class="project-name">doc</div>
+      <div class="project-desc">Personal documentation repository — notes, references, and write-ups covering systems topics, tooling, and engineering concepts collected over time.</div>
+      <div class="project-footer"><span class="project-link-label"><i class="fab fa-github"></i> middi870/doc</span></div>
     </a>
 
     <a class="project-card" href="https://github.com/middi870" target="_blank" rel="noopener">
-      <div class="project-card-top">
-        <div class="project-icon"><i class="fas fa-server"></i></div>
-        <span class="project-lang">Python · FastAPI</span>
-      </div>
+      <div class="project-card-top"><div class="project-icon"><i class="fas fa-server"></i></div><span class="project-lang">Python · FastAPI</span></div>
       <div class="project-name">Modular Backend API Platform</div>
       <div class="project-desc">Scalable FastAPI services with modular routing and async request handling. Designed for maintainability with reusable components and clear service separation.</div>
-      <div class="project-footer">
-        <span class="project-link-label"><i class="fab fa-github"></i> github.com/middi870</span>
-      </div>
+      <div class="project-footer"><span class="project-link-label"><i class="fab fa-github"></i> github.com/middi870</span></div>
     </a>
 
     <a class="project-card" href="https://github.com/middi870" target="_blank" rel="noopener">
-      <div class="project-card-top">
-        <div class="project-icon"><i class="fas fa-plug"></i></div>
-        <span class="project-lang">Python · WebSockets</span>
-      </div>
+      <div class="project-card-top"><div class="project-icon"><i class="fas fa-plug"></i></div><span class="project-lang">Python · WebSockets</span></div>
       <div class="project-name">Real-Time WebSocket Communication System</div>
       <div class="project-desc">Backend messaging system using persistent WebSocket connections — covers connection lifecycle management, event-driven communication, and async networking.</div>
-      <div class="project-footer">
-        <span class="project-link-label"><i class="fab fa-github"></i> github.com/middi870</span>
-      </div>
+      <div class="project-footer"><span class="project-link-label"><i class="fab fa-github"></i> github.com/middi870</span></div>
     </a>
 
     <a class="project-card" href="https://github.com/middi870" target="_blank" rel="noopener">
-      <div class="project-card-top">
-        <div class="project-icon"><i class="fas fa-microchip"></i></div>
-        <span class="project-lang">Rust</span>
-      </div>
+      <div class="project-card-top"><div class="project-icon"><i class="fas fa-microchip"></i></div><span class="project-lang">Rust</span></div>
       <div class="project-name">Rust Performance Exploration — Matrix Computation</div>
       <div class="project-desc">Cache-optimised matrix multiplication with threading. Benchmarked against NumPy to study memory locality and parallel execution, exploring Rust's low-level performance techniques.</div>
-      <div class="project-footer">
-        <span class="project-link-label"><i class="fab fa-github"></i> github.com/middi870</span>
-      </div>
+      <div class="project-footer"><span class="project-link-label"><i class="fab fa-github"></i> github.com/middi870</span></div>
     </a>
 
     <a class="project-card" href="https://github.com/middi870" target="_blank" rel="noopener">
-      <div class="project-card-top">
-        <div class="project-icon"><i class="fas fa-brain"></i></div>
-        <span class="project-lang">Python</span>
-      </div>
+      <div class="project-card-top"><div class="project-icon"><i class="fas fa-brain"></i></div><span class="project-lang">Python</span></div>
       <div class="project-name">Custom Language Model Implementation</div>
       <div class="project-desc">Simplified pipeline for tokenization, preprocessing, and training workflow. Studied attention mechanisms and architectural tradeoffs to understand internal model mechanics.</div>
-      <div class="project-footer">
-        <span class="project-link-label"><i class="fab fa-github"></i> github.com/middi870</span>
-      </div>
+      <div class="project-footer"><span class="project-link-label"><i class="fab fa-github"></i> github.com/middi870</span></div>
     </a>
 
     <a class="project-card" href="https://github.com/middi870/learnjs" target="_blank" rel="noopener">
-      <div class="project-card-top">
-        <div class="project-icon"><i class="fab fa-js"></i></div>
-        <span class="project-lang">JavaScript</span>
-      </div>
+      <div class="project-card-top"><div class="project-icon"><i class="fab fa-js"></i></div><span class="project-lang">JavaScript</span></div>
       <div class="project-name">learnjs</div>
       <div class="project-desc">A hands-on JavaScript learning repo — documenting experiments and progress while mastering the language from scratch.</div>
-      <div class="project-footer">
-        <span class="project-link-label"><i class="fab fa-github"></i> middi870/learnjs</span>
-        <span class="project-stars"><i class="fas fa-star"></i> 1</span>
-      </div>
+      <div class="project-footer"><span class="project-link-label"><i class="fab fa-github"></i> middi870/learnjs</span><span class="project-stars"><i class="fas fa-star"></i> 1</span></div>
     </a>
 
   </div>
@@ -1035,17 +337,14 @@
 
 <hr class="divider" />
 
-<!-- ─── CONTACT ─── -->
 <div class="contact-section" id="contact">
   <div class="contact-wrapper">
     <div class="section-label">Get in touch</div>
     <h2 class="section-title">Contact</h2>
     <div class="contact-grid">
+
       <div class="contact-left">
-        <p>
-          Interested in backend infrastructure, systems engineering, or just want to connect?
-          I'm open to opportunities, collaborations, and conversations with curious engineers.
-        </p>
+        <p>Interested in backend infrastructure, systems engineering, or just want to connect? I'm open to opportunities, collaborations, and conversations with curious engineers.</p>
         <div class="contact-links">
           <a class="contact-link" href="mailto:midwayworld19@gmail.com">
             <i class="fas fa-envelope"></i>
@@ -1069,46 +368,28 @@
             </div>
           </a>
         </div>
-            </div>
-          </a>
-        </div>
       </div>
+
       <div class="contact-right">
         <div class="fun-facts">
           <h3><i class="fas fa-bolt"></i> Quick facts</h3>
-          <div class="fact-item">
-            <span class="fact-emoji">🐧</span>
-            <span>Daily Arch Linux user — loves configuring dev environments (Uses Vim, Bash, Tmux etc...).</span>
-          </div>
-          <div class="fact-item">
-            <span class="fact-emoji">⚡</span>
-            <span>Interested in distributed systems, infrastructure tooling, and high-performance backends</span>
-          </div>
-          <div class="fact-item">
-            <span class="fact-emoji">📡</span>
-            <span>Built an RF sensing system that detects human presence via WiFi fluctuations</span>
-          </div>
-          <div class="fact-item">
-            <span class="fact-emoji">🦋</span>
-            <span>Fun fact: The first "computer bug" was a real moth — found in a relay in 1947!</span>
-          </div>
-          <div class="fact-item">
-            <span class="fact-emoji">🎓</span>
-            <span>CBSE Class XII (PCMB) · Army Public School · 85%</span>
-          </div>
+          <div class="fact-item"><span class="fact-emoji">🐧</span><span>Daily Arch Linux user — loves configuring dev environments (Vim, Bash, Tmux etc...)</span></div>
+          <div class="fact-item"><span class="fact-emoji">⚡</span><span>Interested in distributed systems, infrastructure tooling, and high-performance backends</span></div>
+          <div class="fact-item"><span class="fact-emoji">📡</span><span>Built an RF sensing system that detects human presence via WiFi fluctuations</span></div>
+          <div class="fact-item"><span class="fact-emoji">🦋</span><span>Fun fact: The first "computer bug" was a real moth — found in a relay in 1947!</span></div>
+          <div class="fact-item"><span class="fact-emoji">🎓</span><span>CBSE Class XII (PCMB) · Army Public School · 85%</span></div>
         </div>
       </div>
+
     </div>
   </div>
 </div>
 
-<!-- ─── FOOTER ─── -->
 <footer>
   <p>&copy; 2026 <a href="https://github.com/middi870">Aditya Ranjan Jha</a> · Systems & Infrastructure Engineer · India</p>
   <p>middi870.github.io</p>
 </footer>
 
-<!-- ─── BACK TO TOP ─── -->
 <button class="btt" id="btt" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Back to top">
   <i class="fas fa-arrow-up"></i>
 </button>
